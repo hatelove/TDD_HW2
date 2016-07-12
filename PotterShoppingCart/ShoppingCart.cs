@@ -26,7 +26,8 @@ namespace ShoppingCart
             int orders = bookInfo.Order["1"] + bookInfo.Order["2"] + bookInfo.Order["3"] + 
                             bookInfo.Order["4"] + bookInfo.Order["5"];
 
-            return numOfVolume * bookInfo.price * bookInfo.discount[numOfVolume] + (orders - numOfVolume) * bookInfo.price;
+            return numOfVolume * bookInfo.price * bookInfo.discount[numOfVolume] + 
+                    (orders - numOfVolume) * bookInfo.price * bookInfo.discount[(orders - numOfVolume)];
         }
 
         public class BookInfo
@@ -47,7 +48,7 @@ namespace ShoppingCart
 
             public Dictionary<int, double> discount = new Dictionary<int, double>
             {
-                { 1, 1}, {2,0.95}, { 3, 0.9}, { 4,0.8}, { 5,0.75}
+                { 0, 1},{ 1, 1}, {2,0.95}, { 3, 0.9}, { 4,0.8}, { 5,0.75}
             };
         }
     }

@@ -143,5 +143,26 @@ namespace ShoppingCart.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod()]
+        public void CalculatePriceTest_第一集買一本_第二三集各買兩本_價格為_460()
+        {
+            // arrange
+            BookInfo bookInfo = new BookInfo();
+
+            bookInfo.Order = new Dictionary<string, int>
+            {
+                { "1", 1}, { "2",2}, { "3", 2}, { "4",0}, {"5",0}
+            };
+
+            ShoppingCart shoppingCart = new ShoppingCart();
+
+            double expected = 460;
+
+            // act
+            double actual = shoppingCart.CalculatePrice(bookInfo);
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
