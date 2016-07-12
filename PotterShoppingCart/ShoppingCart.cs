@@ -11,7 +11,7 @@ namespace ShoppingCart
 
         public double CalculatePrice(BookInfo bookInfo)
         {
-            int amount = 0;
+            int numOfVolume = 0;
             foreach (var kvp in bookInfo.Order)
             {
                 if(kvp.Value == 0)
@@ -19,12 +19,14 @@ namespace ShoppingCart
                     continue;
                 }
 
-                amount++;
+                numOfVolume++;
 
             }
 
-            return (bookInfo.Order["1"] + bookInfo.Order["2"] + bookInfo.Order["3"] + 
-                    bookInfo.Order["4"] + bookInfo.Order["5"]) * bookInfo.price * bookInfo.discount[amount];
+            int orders = bookInfo.Order["1"] + bookInfo.Order["2"] + bookInfo.Order["3"] + 
+                            bookInfo.Order["4"] + bookInfo.Order["5"];
+
+            return numOfVolume * bookInfo.price * bookInfo.discount[numOfVolume] + (orders - numOfVolume) * bookInfo.price;
         }
 
         public class BookInfo
